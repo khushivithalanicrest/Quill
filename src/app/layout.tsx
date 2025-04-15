@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import Navbar from "@/components/Navbar";
+import Providers from "@/components/Providers";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Toaster } from "sonner";
+import "simplebar-react/dist/simplebar.min.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +29,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className="light">
+      <Providers>
+        <body
+          className={cn(
+            "min-h-screen font-sans antialiased grainy",
+            geistSans.variable,
+            geistMono.variable
+          )}
+        >
+          <>
+            <Toaster />
+            <Navbar />
+            {children}
+          </>
+        </body>
+      </Providers>
     </html>
   );
 }
