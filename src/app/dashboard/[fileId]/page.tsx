@@ -4,17 +4,17 @@ import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-const Page = async ({ params }: { params: { fileid: string } }) => {
-  const { fileid } = params;
+const Page = async ({ params }: { params: { fileId: string } }) => {
+  const { fileId } = params;
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || !user.id) redirect(`/auth-callback?origin=dashboard/${fileid}`);
+  if (!user || !user.id) redirect(`/auth-callback?origin=dashboard/${fileId}`);
 
   const file = await db.file.findFirst({
     where: {
-      id: fileid,
+      id: fileId,
       userId: user.id,
     },
   });
