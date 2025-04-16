@@ -104,7 +104,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
               setCurrPage((prev) =>
                 prev + 1 > numPages! ? numPages! : prev + 1
               );
-              setValue("page", String(currPage - 1));
+              setValue("page", String(currPage + 1));
             }}
             variant="ghost"
             aria-label="previous page"
