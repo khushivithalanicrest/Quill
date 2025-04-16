@@ -55,7 +55,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
             {typeof message.text === "string" ? (
               <ReactMarkdown
                 components={{
-                  p: ({ node, ...props }) => (
+                  p: ({ ...props }) => (
                     <p
                       {...props}
                       className={cn("prose", {
