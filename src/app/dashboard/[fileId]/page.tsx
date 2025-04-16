@@ -4,7 +4,13 @@ import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-const Page = async ({ params }: { params: { fileId: string } }) => {
+interface PageProps {
+  params: {
+    fileId: string;
+  };
+}
+
+const Page = async ({ params }: PageProps) => {
   const { fileId } = params;
 
   const { getUser } = getKindeServerSession();
@@ -19,10 +25,10 @@ const Page = async ({ params }: { params: { fileId: string } }) => {
     },
   });
 
-  if (!file) return;
+  if (!file) return null;
 
   return (
-    <div className="flex-1 justify-between flex flex-col h-[calc(100vh-3.5ren)]">
+    <div className="flex-1 justify-between flex flex-col h-[calc(100vh-3.5rem)]">
       <div className="mx-auto w-full max-w-8xl grow lg:flex xl:px-2">
         {/* left side */}
         <div className="flex-1 xl:flex">
