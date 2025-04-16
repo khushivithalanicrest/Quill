@@ -10,7 +10,7 @@ interface PageProps {
   };
 }
 
-const page = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
   const { fileId } = params;
 
   const { getUser } = getKindeServerSession();
@@ -45,4 +45,4 @@ const page = async ({ params }: PageProps) => {
   );
 };
 
-export default page;
+export default Page;
