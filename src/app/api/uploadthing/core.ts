@@ -24,13 +24,15 @@ const onUploadComplete = async ({
   file,
 }: {
   metadata: Awaited<ReturnType<typeof middleware>>;
-  file: { key: string; name: string; ufsUrl: any };
+  file: { key: string; name: string; ufsUrl: string };
 }) => {
   const isFileExist = await db.file.findFirst({
     where: {
       key: file.key,
     },
   });
+
+  if (isFileExist) return;
   const createdFile = await db.file.create({
     data: {
       key: file.key,
