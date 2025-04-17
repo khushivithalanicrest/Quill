@@ -4,13 +4,9 @@ import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-interface PageProps {
-  params: {
-    fileId: string;
-  };
-}
-
-const Page = async ({ params }: PageProps) => {
+const Page = async (props: any) => {
+  const params = await props.params;
+  console.log(params, "params");
   const { fileId } = params;
 
   const { getUser } = getKindeServerSession();
